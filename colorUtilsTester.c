@@ -193,15 +193,80 @@ int main(int argc, char **argv) {
   //        toSepiaRed(), toSepiaGreen(), toSepiaBlue()
   //       for at least 6 and a total of at least 20
 
-  printf("Number Test Cases Passed: %6d\n", numPassed);
-  printf("Number Test Cases Failed: %6d\n", numFailed);
-  printf("Percent Passed:           %6.2f\n", 100.0 * numPassed / (numPassed + numFailed));
-
-  if(reportPass) {
-    return numPassed;
+  c = 123;
+  expectedD = 0.5;
+  printf("TESTING: rgbIntToFloat(%d): ", c);
+  actualD = rgbIntToFloat(c);
+  if(!isClose(expectedD, actualD)) {
+    printf("FAILED: returned %f, expected %f\n", actualD, expectedD);
+    numFailed++;
   } else {
-    return numFailed;
+    printf("PASSED\n");
+    numPassed++;
   }
+
+
+
+
+  printf("TESTING: max(%d,%d,%d): ", x, y, z);
+  result = max(x, y, z);
+  if(result != 40) {
+    printf("FAILED: max returned %d, expected 40\n", result);
+    numFailed++;
+  } else {
+    printf("PASSED\n");
+    numPassed++;
+  }
+  printf("TESTING: max(%d,%d,%d): ", z, z, z);
+  result = max(z, z, z);
+  if(result != 45) {
+    printf("FAILED: max returned %d, expected 45\n", result);
+    numFailed++;
+  } else {
+    printf("PASSED\n");
+    numPassed++;
+  }
+
+
+
+
+
+  r = 233, g = 0, b = 0;
+  expectedResult = 85;
+  printf("TESTING: toGrayScaleAverage(%d,%d,%d): ", r, g, b);
+  result = toGrayScaleAverage(r, g, b);
+  if(result != expectedResult) {
+    printf("FAILED: toGrayScaleAverage returned %d, expected %d\n", result, expectedResult);
+    numFailed++;
+  } else {
+    printf("PASSED\n");
+    numPassed++;
+  }
+   r = 255, g = 0, b = 0;
+  expectedResult = 89;
+  printf("TESTING: toGrayScaleAverage(%d,%d,%d): ", r, g, b);
+  result = toSepiaGreen(r, g, b);
+  if(result != expectedResult) {
+    printf("FAILED: toGrayScaleAverage returned %d, expected %d\n", result, expectedResult);
+    numFailed++;
+  } else {
+    printf("PASSED\n");
+    numPassed++;
+  }
+
+
+ r = 255, g = 0, b = 0;
+  expectedResult = 100;
+  printf("TESTING: toGrayScaleAverage(%d,%d,%d): ", r, g, b);
+  result = toSepiaRed(r, g, b);
+  if(result != expectedResult) {
+    printf("FAILED: toGrayScaleAverage returned %d, expected %d\n", result, expectedResult);
+    numFailed++;
+  } else {
+    printf("PASSED\n");
+    numPassed++;
+  }
+
 
 }
 
